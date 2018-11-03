@@ -1,24 +1,25 @@
 <template>
     <ul class="nav justify-content-center mt-5">
-      <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fab fa-twitter-square"></i>Twitter</a>
-      </li>
-      <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fab fa-facebook-square"></i>Facebook</a>
-      </li>
-      <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fab fa-instagram"></i>Instagram</a>
-      </li>
-      <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fas fa-envelope-square"></i>Email</a>
+      <li v-for="(item,idx) in socialInfo" :key="idx" class="nav-item">
+          <a class="nav-link" href="#"><i :class="item.iclass"></i>{{ item.title }}</a>
       </li>
     </ul>
 </template>
 
 <script>
     export default {
+        data() {
+            return {
+                socialInfo:[
+                    {title:'Twitter',iclass:'fab fa-twitter-square'},
+                    {title:'Facebook',iclass:'fab fa-facebook-square'},
+                    {title:'Instagram',iclass:'fab fa-instagram'},
+                    {title:'Email',iclass:'fas fa-envelope-square'}
+                ]
+            }
+        },
         mounted() {
-            console.log('Component mounted.')
+            console.log('SocialComponent Component mounted.')
         }
     }
 </script>
