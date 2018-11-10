@@ -1,15 +1,17 @@
 <template>
     <div>
-        <div class="article jumbotron mt-5 text-center">
-            <p class="lead">{{ jumbotron.text }}</p>
-            <hr class="my-4">
-            <h2>{{ jumbotron.title }}</h2>
-        </div>
+        <div v-for="(jumbotron,idx) in jumbotrons" :key="idx">
+            <div class="article jumbotron mt-5 text-center">
+                <p class="lead">{{ jumbotron.text }}</p>
+                <hr class="my-4">
+                <h2>{{ jumbotron.title }}</h2>
+            </div>
 
-        <div class="jumbotron mt-5 text-center">
-            <p class="lead"> {{ jumbotron.text }} </p>
-            <hr class="my-4">
-            <h2>{{ jumbotron.title }}</h2>
+            <div class="jumbotron mt-5 text-center">
+                <p class="lead"> {{ jumbotron.text }} </p>
+                <hr class="my-4">
+                <h2>{{ jumbotron.title }}</h2>
+            </div>
         </div>
     </div>
 </template>
@@ -18,11 +20,23 @@
     export default {
         data() {
             return {
-                jumbotron: {title:'Morbi maximus justo',text:'Nam vel ante sit amet libero scelerisque facilisis eleifend vitae urna'}
+                jumbotrons: []
             }
         },
         mounted() {
-            console.log('JumbotronComponent Component mounted.')
+            function getjumbotronData() {
+                return axios.get('/getjumbotronData',{
+                        params:{}
+                    });
+            }
+            axios.all([getjumbotronData()])
+                .then(axios.spread((res)=>{
+                    this.jumbotrons = res.data;
+                }))
+                .catch(function (error) {
+                    console.log(error);
+                });
+            console.log('JumbotronComponent Component mounted.');
         }
     }
 </script>

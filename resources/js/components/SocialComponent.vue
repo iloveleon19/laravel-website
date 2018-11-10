@@ -10,16 +10,23 @@
     export default {
         data() {
             return {
-                socialInfo:[
-                    {title:'Twitter',iclass:'fab fa-twitter-square'},
-                    {title:'Facebook',iclass:'fab fa-facebook-square'},
-                    {title:'Instagram',iclass:'fab fa-instagram'},
-                    {title:'Email',iclass:'fas fa-envelope-square'}
-                ]
+                socialInfo:[]
             }
         },
         mounted() {
-            console.log('SocialComponent Component mounted.')
+            function getSocialData() {
+                return axios.get('/getSocialData',{
+                        params:{}
+                    });
+            }
+            axios.all([getSocialData()])
+                .then(axios.spread((res)=>{
+                    this.socialInfo = res.data;
+                }))
+                .catch(function (error) {
+                    console.log(error);
+                });
+            console.log('SocialComponent Component mounted.');
         }
     }
 </script>

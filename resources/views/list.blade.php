@@ -14,17 +14,11 @@
 </head>
 <body>
 
-  <div id="app">
-    <header-component></header-component>
-    <carousel-component></carousel-component>
-    <card-component></card-component>
-    <jumbotron-component></jumbotron-component>
-    <container-component></container-component>
-    <social-component></social-component>
-    <foot-component></foot-component>
-  </div>
+<div id="app">
+    <axios-test-component></axios-test-component>
+</div>
 
-  <!--Javascript-->
-  <script src="/js/app.js"></script>
+<!--Javascript-->
+<script src="/js/app.js"></script>
 </body>
 </html>

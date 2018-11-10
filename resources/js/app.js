@@ -22,6 +22,8 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
+Vue.component('axios-test-component', require('./components/AxiosTestComponent.vue'));
+
 Vue.component('card-component', require('./components/CardComponent.vue'));
 Vue.component('carousel-component', require('./components/CarouselComponent.vue'));
 Vue.component('container-component', require('./components/ContainerComponent.vue'));

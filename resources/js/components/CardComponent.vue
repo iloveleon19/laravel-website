@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-sm-6" v-for="(card,idx) in cards" :key="idx">
                 <div class="card text-center">
-                    <img class="card-img-top" :src="card.img" :alt="card.alt">
+                    <img class="card-img-top" :src="card.img_path" :alt="card.alt_cap">
                     <div class="card-header">
                        {{ card.header }}
                     </div>
@@ -24,14 +24,39 @@
     export default {
         data() {
             return {
-                cards:[
-                    {header:'maecenas sapien feugiat ex purus',title:'Lorem ipsum dolor',text:'Cras aliquet urna ut sapien tincidunt, quis malesuada elit facilisis. Vestibulum sit amet tortor velit. Nam elementum nibh a libero pharetra elementum. Maecenas feugiat ex purus, quis volutpat lacus placerat malesuada.',img:'/images/pic02.jpg',alt:'Card image cap'},
-                    {header:'mattis elementum sapien pretium tellus',title:'Vestibulum sit amet',text:'Cras aliquet urna ut sapien tincidunt, quis malesuada elit facilisis. Vestibulum sit amet tortor velit. Nam elementum nibh a libero pharetra elementum. Maecenas feugiat ex purus, quis volutpat lacus placerat malesuada.',img:'/images/pic03.jpg',alt:'Card image cap'}
-                ]
+                cards:[]
             }
         },
         mounted() {
-            console.log('CardComponent Component mounted.')
+            function getPicImage() {
+                return axios.get('/getPicImage',{
+                        params:{}
+                    });
+            }
+            function getCardData() {
+                return axios.get('/getCardData',{
+                        params:{}
+                    });
+            }
+            axios.all([getPicImage(), getCardData()])
+                .then(axios.spread((resImg, resCard)=>{
+                    var outData = resCard.data;
+
+                    outData.forEach((element,index) => {
+                        var imgIndex = $.map(resImg.data, function(item, index) {
+                            return item.img_id
+                        }).indexOf(element.img_id);
+
+                        this.$set(outData[index], 'img_path', resImg.data[imgIndex].img_path);
+                        this.$set(outData[index], 'alt_cap', resImg.data[imgIndex].img_alt_cap);
+                    });
+
+                    this.cards = outData;
+                }))
+                .catch(function (error) {
+                    console.log(error);
+                });
+            console.log('CardComponent Component mounted.');
         }
     }
 </script>

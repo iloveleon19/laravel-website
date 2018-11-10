@@ -28,17 +28,40 @@
     export default {
         data() {
             return {
-                banners:[
-                    {img_path:"/images/slide01.jpg",alt:"First slide",title:"Hielo",text:'A free responsive web site template by <a href="https://templated.co">TEMPLATED</a>'},
-                    {img_path:"/images/slide02.jpg",alt:"Second slide",title:"Magna etiam",text:"Lorem ipsum dolor sit amet nullam feugiat"},
-                    {img_path:"/images/slide03.jpg",alt:"Third slide",title:"Tempus dolor",text:"Sed cursus aliuam veroeros lorem ipsum nullam"},
-                    {img_path:"/images/slide04.jpg",alt:"Fourth slide",title:"Etiam feugiat",text:"Adipiscing lorem ipsum feugiat sed phasellus consequat"},
-                    {img_path:"/images/slide05.jpg",alt:"Fifth slide",title:"Lorem adipiscing",text:"Ipsum dolor sed magna veroeros lorem ipsum"},
-                ]
+                banners:[]
             }
         },
         mounted() {
-            console.log('CarouselComponent Component mounted.')
+            function getSlideImage() {
+                return axios.get('/getSlideImage',{
+                        params:{}
+                    });
+            }
+            function getCarouselData() {
+                return axios.get('/getCarouselData',{
+                        params:{}
+                    });
+            }
+            axios.all([getSlideImage(), getCarouselData()])
+                .then(axios.spread((resImg, resCarousel)=>{
+                    var outData = resCarousel.data;
+
+                    outData.forEach((element,index) => {
+                        var imgIndex = $.map(resImg.data, function(item, index) {
+                            return item.img_id
+                        }).indexOf(element.img_id);
+
+                        this.$set(outData[index], 'img_path', resImg.data[imgIndex].img_path);
+                        this.$set(outData[index], 'alt', resImg.data[imgIndex].img_alt);
+                    });
+
+                    this.banners = outData;
+                }))
+                .catch(function (error) {
+                    console.log(error);
+                });
+
+            console.log('CarouselComponent Component mounted.');
         }
     }
 </script>
