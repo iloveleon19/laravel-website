@@ -25,25 +25,3 @@ Route::get('/getCarouselData', 'Frontend\CarouselController@getCarouselData');
 Route::get('/getBrandData', 'Frontend\HeaderController@getBrandData');
 Route::get('/getMenuItem', 'Frontend\HeaderController@getMenuItem');
 Route::get('/getSearchItems', 'Frontend\HeaderController@getSearchItems');
-
-
-// Route::get('skills', function () {
-//     return ['Laravel', 'Vue', 'PHP', 'JavaScript', 'Tooling'];
-// });
-
-// Route::get('/profile/{id}', 'ProfileController@showID');
-// Route::get('/list', 'ProfileController@listPage');
-// Route::get('/listDataGet', 'ProfileController@listDataGet');
-// Route::post('/listDataPost', 'ProfileController@listDataPost');
-
-// Route::resource('data', 'DataController');
-
-// 只對應到 index、show
-// Route::resource('photos', 'PhotoController')->only([
-//     'index', 'show'
-// ]);
-
-// // 反向設定，只對應到 index、show
-// Route::resource('photos', 'PhotoController')->except([
-//     'create', 'store', 'update', 'destroy'
-// ]);
