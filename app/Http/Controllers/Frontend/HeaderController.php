@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class headerController extends Controller
+class HeaderController extends Controller
 {
     public function getBrandData()
     {

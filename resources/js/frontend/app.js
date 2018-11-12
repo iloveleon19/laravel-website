@@ -5,7 +5,7 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+require('../bootstrap');
 
 // import VueRouter from 'vue-router'; //ES6 Module引入
 // import router from './routes'
@@ -19,10 +19,6 @@ window.Vue = require('vue');
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
-
-Vue.component('axios-test-component', require('./components/AxiosTestComponent.vue'));
 
 Vue.component('card-component', require('./components/CardComponent.vue'));
 Vue.component('carousel-component', require('./components/CarouselComponent.vue'));

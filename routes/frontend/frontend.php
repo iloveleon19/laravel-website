@@ -12,20 +12,19 @@
 */
 
 Route::get('/', function () {
-    // return view('welcome');
-    return view('home');
+    return view('frontend.index');
 });
 
-Route::get('/getFootData', 'footController@getFootData');
-Route::get('/getSocialData', 'socialController@getSocialData');
-Route::get('/getjumbotronData', 'jumbotronController@getjumbotronData');
-Route::get('/getPicImage', 'imageController@getPicImage');
-Route::get('/getSlideImage', 'imageController@getSlideImage');
-Route::get('/getCardData', 'cardController@getCardData');
-Route::get('/getCarouselData', 'carouselController@getCarouselData');
-Route::get('/getBrandData', 'headerController@getBrandData');
-Route::get('/getMenuItem', 'headerController@getMenuItem');
-Route::get('/getSearchItems', 'headerController@getSearchItems');
+Route::get('/getFootData', 'Frontend\FootController@getFootData');
+Route::get('/getSocialData', 'Frontend\SocialController@getSocialData');
+Route::get('/getjumbotronData', 'Frontend\JumbotronController@getjumbotronData');
+Route::get('/getPicImage', 'Frontend\ImageController@getPicImage');
+Route::get('/getSlideImage', 'Frontend\ImageController@getSlideImage');
+Route::get('/getCardData', 'Frontend\CardController@getCardData');
+Route::get('/getCarouselData', 'Frontend\CarouselController@getCarouselData');
+Route::get('/getBrandData', 'Frontend\HeaderController@getBrandData');
+Route::get('/getMenuItem', 'Frontend\HeaderController@getMenuItem');
+Route::get('/getSearchItems', 'Frontend\HeaderController@getSearchItems');
 
 
 // Route::get('skills', function () {

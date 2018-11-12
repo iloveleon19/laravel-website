@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class carouselController extends Controller
+class CarouselController extends Controller
 {
     public function getCarouselData()
     {
