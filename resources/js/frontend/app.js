@@ -23,7 +23,7 @@ window.Vue = require('vue');
 Vue.component('card-component', require('./components/CardComponent.vue'));
 Vue.component('carousel-component', require('./components/CarouselComponent.vue'));
 Vue.component('container-component', require('./components/ContainerComponent.vue'));
-Vue.component('foot-component', require('./components/FootComponent.vue'));
+Vue.component('footer-component', require('./components/FooterComponent.vue'));
 Vue.component('header-component', require('./components/HeaderComponent.vue'));
 Vue.component('jumbotron-component', require('./components/JumbotronComponent.vue'));
 Vue.component('social-component', require('./components/SocialComponent.vue'));

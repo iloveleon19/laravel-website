@@ -32,30 +32,14 @@
             }
         },
         mounted() {
-            function getSlideImage() {
-                return axios.get('/getSlideImage',{
-                        params:{}
-                    });
-            }
             function getCarouselData() {
                 return axios.get('/getCarouselData',{
                         params:{}
                     });
             }
-            axios.all([getSlideImage(), getCarouselData()])
-                .then(axios.spread((resImg, resCarousel)=>{
-                    var outData = resCarousel.data;
-
-                    outData.forEach((element,index) => {
-                        var imgIndex = $.map(resImg.data, function(item, index) {
-                            return item.img_id
-                        }).indexOf(element.img_id);
-
-                        this.$set(outData[index], 'img_path', resImg.data[imgIndex].img_path);
-                        this.$set(outData[index], 'alt', resImg.data[imgIndex].img_alt);
-                    });
-
-                    this.banners = outData;
+            axios.all([getCarouselData()])
+                .then(axios.spread((resCarousel)=>{
+                    this.banners = resCarousel.data;
                 }))
                 .catch(function (error) {
                     console.log(error);

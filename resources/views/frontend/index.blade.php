@@ -21,7 +21,7 @@
     <jumbotron-component></jumbotron-component>
     <container-component></container-component>
     <social-component></social-component>
-    <foot-component></foot-component>
+    <footer-component></footer-component>
   </div>
 
   <!--Javascript-->

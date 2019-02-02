@@ -4,33 +4,61 @@ namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+USE App\Image;
 
 class ImageController extends Controller
 {
     public function getSlideImage()
     {
-        $outData[]=['img_id'=>'1','img_path'=>'/images/slide01.jpg', 'alt'=>'First slide'];
-        $outData[]=['img_id'=>'2','img_path'=>'/images/slide02.jpg', 'alt'=>'Second slide'];
-        $outData[]=['img_id'=>'3','img_path'=>'/images/slide03.jpg', 'alt'=>'Third slide'];
-        $outData[]=['img_id'=>'4','img_path'=>'/images/slide04.jpg', 'alt'=>'Fourth slide'];
-        $outData[]=['img_id'=>'5','img_path'=>'/images/slide05.jpg', 'alt'=>'Fifth slide'];
+        $images = Image::where(['type'=>1, 'is_active'=>true])->orderBy('created_at', 'desc')->skip(0)->take(5)->get();
+
+        $outData = [];
+        foreach ($images as $image) {
+            $alt = json_decode($image->alt_text, true);
+
+            $outData[] = [
+                'img_id' => "$image->id",
+                'img_path' => "$image->img_path",
+                'alt' => "{$alt['alt']}"
+            ];
+        }
 
         return json_encode($outData);
     }
 
     public function getPicImage()
     {
-        $outData[]=['img_id'=>'1','img_path'=>'/images/pic01.jpg', 'alt'=>'Card image', 'alt_cap'=>'Card image cap'];
-        $outData[]=['img_id'=>'2','img_path'=>'/images/pic02.jpg', 'alt'=>'Card image', 'alt_cap'=>'Card image cap'];
-        $outData[]=['img_id'=>'3','img_path'=>'/images/pic03.jpg', 'alt'=>'Card image', 'alt_cap'=>'Card image cap'];
-        $outData[]=['img_id'=>'4','img_path'=>'/images/pic04.jpg', 'alt'=>'Card image', 'alt_cap'=>'Card image cap'];
+        $images = Image::where(['type'=>2, 'is_active'=>true])->orderBy('created_at', 'desc')->skip(0)->take(4)->get();
+
+        $outData = [];
+        foreach ($images as $image) {
+            $alt = json_decode($image->alt_text, true);
+
+            $outData[] = [
+                'img_id' => "$image->id",
+                'img_path' => "$image->img_path",
+                'alt' => "{$alt['alt']}",
+                'alt_cap' => "{$alt['alt_cap']}",
+            ];
+        }
 
         return json_encode($outData);
     }
 
     public function getBgImage()
     {
-        $outData[]=['img_id'=>'1','img_path'=>'/images/bg.jpg', 'alt'=>'Background image'];
+        $images = Image::where(['type'=>3, 'is_active'=>true])->orderBy('created_at', 'desc')->skip(0)->take(1)->get();
+
+        $outData = [];
+        foreach ($images as $image) {
+            $alt = json_decode($image->alt_text, true);
+
+            $outData[] = [
+                'img_id' => "$image->id",
+                'img_path' => "$image->img_path",
+                'alt' => "{$alt['alt']}"
+            ];
+        }
 
         return json_encode($outData);
     }

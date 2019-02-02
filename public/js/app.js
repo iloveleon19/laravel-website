@@ -14022,7 +14022,7 @@ window.Vue = __webpack_require__(37);
 Vue.component('card-component', __webpack_require__(40));
 Vue.component('carousel-component', __webpack_require__(43));
 Vue.component('container-component', __webpack_require__(46));
-Vue.component('foot-component', __webpack_require__(49));
+Vue.component('footer-component', __webpack_require__(49));
 Vue.component('header-component', __webpack_require__(52));
 Vue.component('jumbotron-component', __webpack_require__(55));
 Vue.component('social-component', __webpack_require__(58));
@@ -47388,29 +47388,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         var _this = this;
 
-        function getPicImage() {
-            return axios.get('/getPicImage', {
-                params: {}
-            });
-        }
         function getCardData() {
             return axios.get('/getCardData', {
                 params: {}
             });
         }
-        axios.all([getPicImage(), getCardData()]).then(axios.spread(function (resImg, resCard) {
-            var outData = resCard.data;
-
-            outData.forEach(function (element, index) {
-                var imgIndex = $.map(resImg.data, function (item, index) {
-                    return item.img_id;
-                }).indexOf(element.img_id);
-
-                _this.$set(outData[index], 'img_path', resImg.data[imgIndex].img_path);
-                _this.$set(outData[index], 'alt_cap', resImg.data[imgIndex].img_alt_cap);
-            });
-
-            _this.cards = outData;
+        axios.all([getCardData()]).then(axios.spread(function (resCard) {
+            _this.cards = resCard.data;
         })).catch(function (error) {
             console.log(error);
         });
@@ -47570,29 +47554,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         var _this = this;
 
-        function getSlideImage() {
-            return axios.get('/getSlideImage', {
-                params: {}
-            });
-        }
         function getCarouselData() {
             return axios.get('/getCarouselData', {
                 params: {}
             });
         }
-        axios.all([getSlideImage(), getCarouselData()]).then(axios.spread(function (resImg, resCarousel) {
-            var outData = resCarousel.data;
-
-            outData.forEach(function (element, index) {
-                var imgIndex = $.map(resImg.data, function (item, index) {
-                    return item.img_id;
-                }).indexOf(element.img_id);
-
-                _this.$set(outData[index], 'img_path', resImg.data[imgIndex].img_path);
-                _this.$set(outData[index], 'alt', resImg.data[imgIndex].img_alt);
-            });
-
-            _this.banners = outData;
+        axios.all([getCarouselData()]).then(axios.spread(function (resCarousel) {
+            _this.banners = resCarousel.data;
         })).catch(function (error) {
             console.log(error);
         });
@@ -47877,7 +47845,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/js/frontend/components/FootComponent.vue"
+Component.options.__file = "resources/js/frontend/components/FooterComponent.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -47886,9 +47854,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-5619fa25", Component.options)
+    hotAPI.createRecord("data-v-fff9bad0", Component.options)
   } else {
-    hotAPI.reload("data-v-5619fa25", Component.options)
+    hotAPI.reload("data-v-fff9bad0", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -47912,27 +47880,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            companys: []
+            footers: []
         };
     },
     mounted: function mounted() {
         var _this = this;
 
-        function getFootData() {
-            return axios.get('/getFootData', {
+        function getFooterData() {
+            return axios.get('/getFooterData', {
                 params: {}
             });
         }
-        axios.all([getFootData()]).then(axios.spread(function (res) {
-            _this.companys = res.data;
+        axios.all([getFooterData()]).then(axios.spread(function (res) {
+            _this.footers = res.data;
         })).catch(function (error) {
             console.log(error);
         });
-        console.log('FootComponent Component mounted.');
+        console.log('FooterComponent Component mounted.');
     }
 });
 
@@ -47951,11 +47921,23 @@ var render = function() {
         staticClass:
           "navbar navbar-expand-lg navbar-dark bg-dark justify-content-end"
       },
-      _vm._l(_vm.companys, function(company, idx) {
+      _vm._l(_vm.footers, function(footer, idx) {
         return _c(
           "a",
-          { key: idx, staticClass: "navbar-brand", attrs: { href: "#" } },
-          [_vm._v("©" + _vm._s(company.name))]
+          {
+            key: idx,
+            staticClass: "navbar-brand",
+            attrs: { href: footer.link_url }
+          },
+          [
+            _vm._v(
+              "\n            " +
+                _vm._s(footer.title) +
+                "©" +
+                _vm._s(footer.content) +
+                "\n        "
+            )
+          ]
         )
       })
     )
@@ -47967,7 +47949,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-5619fa25", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-fff9bad0", module.exports)
   }
 }
 
@@ -48110,6 +48092,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         }
         axios.all([getBrandData(), getMenuItem(), getSearchItems()]).then(axios.spread(function (resBrand, resMenu, resSeach) {
+            resMenu.data.forEach(function (element, index) {
+                element.isDropdown = element.isDropdown === '1' ? true : false;
+                element.isDisabled = element.isDisabled === '1' ? true : false;
+                element.isActive = element.isActive === '1' ? true : false;
+            });
+
             _this.brands = resBrand.data;
             _this.menuItems = resMenu.data;
             _this.searchItems = resSeach.data;
@@ -48140,7 +48128,7 @@ var render = function() {
             {
               key: index,
               staticClass: "navbar-brand",
-              attrs: { href: brand.link }
+              attrs: { href: brand.link_url }
             },
             [_vm._v(" " + _vm._s(brand.title) + " ")]
           )
@@ -48173,7 +48161,7 @@ var render = function() {
                           {
                             staticClass: "nav-link",
                             class: { disabled: item.isDisabled },
-                            attrs: { href: item.link }
+                            attrs: { href: item.link_url }
                           },
                           [
                             _vm._v(
@@ -48195,7 +48183,7 @@ var render = function() {
                             staticClass: "nav-link dropdown-toggle",
                             class: { disabled: item.isDisabled },
                             attrs: {
-                              href: item.link,
+                              href: item.link_url,
                               id: "navbarDropdown-" + index,
                               role: "button",
                               "data-toggle": "dropdown",
@@ -48231,7 +48219,7 @@ var render = function() {
                                 "a",
                                 {
                                   staticClass: "dropdown-item",
-                                  attrs: { href: subItem.link }
+                                  attrs: { href: subItem.link_url }
                                 },
                                 [_vm._v(" " + _vm._s(subItem.title) + " ")]
                               ),
@@ -48398,7 +48386,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var _this = this;
 
         function getjumbotronData() {
-            return axios.get('/getjumbotronData', {
+            return axios.get('/getJumbotronData', {
                 params: {}
             });
         }
@@ -48552,10 +48540,14 @@ var render = function() {
     { staticClass: "nav justify-content-center mt-5" },
     _vm._l(_vm.socialInfo, function(item, idx) {
       return _c("li", { key: idx, staticClass: "nav-item" }, [
-        _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-          _c("i", { class: item.iclass }),
-          _vm._v(_vm._s(item.title))
-        ])
+        _c(
+          "a",
+          {
+            staticClass: "nav-link",
+            attrs: { target: "_blank", href: item.link_url }
+          },
+          [_c("i", { class: item.iclass }), _vm._v(_vm._s(item.title))]
+        )
       ])
     })
   )

@@ -15,9 +15,9 @@ Route::get('/', function () {
     return view('frontend.index');
 });
 
-Route::get('/getFootData', 'Frontend\FootController@getFootData');
+Route::get('/getFooterData', 'Frontend\FooterController@getFooterData');
 Route::get('/getSocialData', 'Frontend\SocialController@getSocialData');
-Route::get('/getjumbotronData', 'Frontend\JumbotronController@getjumbotronData');
+Route::get('/getJumbotronData', 'Frontend\JumbotronController@getjumbotronData');
 Route::get('/getPicImage', 'Frontend\ImageController@getPicImage');
 Route::get('/getSlideImage', 'Frontend\ImageController@getSlideImage');
 Route::get('/getCardData', 'Frontend\CardController@getCardData');

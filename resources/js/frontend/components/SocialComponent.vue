@@ -1,7 +1,7 @@
 <template>
     <ul class="nav justify-content-center mt-5">
       <li v-for="(item,idx) in socialInfo" :key="idx" class="nav-item">
-          <a class="nav-link" href="#"><i :class="item.iclass"></i>{{ item.title }}</a>
+          <a class="nav-link" target="_blank" :href="item.link_url"><i :class="item.iclass"></i>{{ item.title }}</a>
       </li>
     </ul>
 </template>

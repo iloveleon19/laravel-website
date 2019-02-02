@@ -4,32 +4,54 @@ namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Brand;
+use App\Search;
+use App\Menu;
+use App\SubMenu;
 
 class HeaderController extends Controller
 {
     public function getBrandData()
     {
-        $outData[]=['brand_id'=>'1', 'title'=>'iloveleon', 'link'=>'#'];
+        $brand = Brand::orderby('created_at', 'desc')->first();
+
+        $outData = [];
+        $outData[] = [
+            'brand_id'=>"$brand->id",
+            'title'=>"$brand->title",
+            'link_url'=>"$brand->link_url"
+        ];
 
         return json_encode($outData);
     }
 
     public function getMenuItem()
     {
-        $subItem[] = ['id'=>'1','parent_id'=>'3','title'=>'Action','divider'=>'1'];
-        $subItem[] = ['id'=>'2','parent_id'=>'3','title'=>'Another action','divider'=>'1'];
-        $subItem[] = ['id'=>'3','parent_id'=>'3','title'=>'Something else here','divider'=>'2'];
+        $menus = Menu::where('is_active',true)->orderBy('sort','asc')->get();
 
-        $outData[]=['item_id'=>'1', 'title'=>'Home', 'link'=>'#', 'dropdownItems'=>[], 'isDropdown'=>false, 'isActive'=>true, 'isDisable'=>false];
-        $outData[]=['item_id'=>'2', 'title'=>'Link', 'link'=>'#', 'dropdownItems'=>[], 'isDropdown'=>false, 'isActive'=>false, 'isDisable'=>false];
-        $outData[]=['item_id'=>'3', 'title'=>'Dropdown', 'link'=>'#', 'dropdownItems'=>[], 'isDropdown'=>true, 'isActive'=>false, 'isDisable'=>false];
-        $outData[]=['item_id'=>'4', 'title'=>'Disable', 'link'=>'#', 'dropdownItems'=>[], 'isDropdown'=>false, 'isActive'=>false, 'isDisable'=>true];
+        $subMenus = SubMenu::where('is_active',true)
+                            ->orderBy('menu_id','asc')
+                            ->orderBy('divider','asc')
+                            ->orderBy('sort','asc')
+                            ->get();
 
-        foreach ($outData as $key => $row) {
-            if ($row['isDropdown']==true) {
-                foreach ($subItem as $k => $r) {
-                    if ($r['parent_id']==$row['item_id']) {
-                        $outData[$key]['dropdownItems'][] = $r;
+        $outData = [];
+        foreach ($menus as $key => $menu) {
+            $outData[$key] = [
+                'menu_id' => "$menu->id",
+                'title' => "$menu->title",
+                'link_url' => "$menu->link_url",
+                'dropdownItems' => [],
+                'isDropdown' => "$menu->isDropdown",
+                'isActive' => "$menu->isActive",
+                'isDisabled' => "$menu->isDisabled",
+                'sort' => "$menu->sort",
+            ];
+
+            if ($menu->isDropdown==true) {
+                foreach ($subMenus as $k => $subMenu) {
+                    if ($subMenu->menu_id==$menu->id) {
+                        $outData[$key]['dropdownItems'][] = $subMenu;
                     }
                 }
             }
@@ -40,7 +62,14 @@ class HeaderController extends Controller
 
     public function getSearchItems()
     {
-        $outData[]=['id'=>'1', 'title'=>'search', 'placeholder'=>'search'];
+        $search = Search::orderby('created_at', 'desc')->first();
+
+        $outData = [];
+        $outData[] = [
+            'search_id'=>"$search->id",
+            'title'=>"$search->title",
+            'placeholder'=>"$search->placeholder"
+        ];
 
         return json_encode($outData);
     }

@@ -1,7 +1,9 @@
 <template>
     <footer id="footer" class="mt-5">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-end">
-            <a class="navbar-brand" href="#" v-for="(company,idx) in companys" :key="idx">&copy;{{ company.name }}</a>
+            <a class="navbar-brand" v-for="(footer,idx) in footers" :key="idx" :href="footer.link_url">
+                {{ footer.title }}&copy;{{ footer.content }}
+            </a>
         </nav>
     </footer>
 </template>
@@ -10,23 +12,23 @@
     export default {
         data() {
             return {
-                companys:[]
+                footers:[]
             }
         },
         mounted() {
-            function getFootData() {
-                return axios.get('/getFootData',{
+            function getFooterData() {
+                return axios.get('/getFooterData',{
                         params:{}
                     });
             }
-            axios.all([getFootData()])
+            axios.all([getFooterData()])
                 .then(axios.spread((res)=>{
-                    this.companys = res.data;
+                    this.footers = res.data;
                 }))
                 .catch(function (error) {
                     console.log(error);
                 });
-            console.log('FootComponent Component mounted.');
+            console.log('FooterComponent Component mounted.');
         }
     }
 </script>

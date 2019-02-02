@@ -25,7 +25,7 @@
         },
         mounted() {
             function getjumbotronData() {
-                return axios.get('/getjumbotronData',{
+                return axios.get('/getJumbotronData',{
                         params:{}
                     });
             }

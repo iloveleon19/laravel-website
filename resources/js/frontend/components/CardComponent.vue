@@ -28,30 +28,14 @@
             }
         },
         mounted() {
-            function getPicImage() {
-                return axios.get('/getPicImage',{
-                        params:{}
-                    });
-            }
             function getCardData() {
                 return axios.get('/getCardData',{
                         params:{}
                     });
             }
-            axios.all([getPicImage(), getCardData()])
-                .then(axios.spread((resImg, resCard)=>{
-                    var outData = resCard.data;
-
-                    outData.forEach((element,index) => {
-                        var imgIndex = $.map(resImg.data, function(item, index) {
-                            return item.img_id
-                        }).indexOf(element.img_id);
-
-                        this.$set(outData[index], 'img_path', resImg.data[imgIndex].img_path);
-                        this.$set(outData[index], 'alt_cap', resImg.data[imgIndex].img_alt_cap);
-                    });
-
-                    this.cards = outData;
+            axios.all([getCardData()])
+                .then(axios.spread((resCard)=>{
+                    this.cards = resCard.data;
                 }))
                 .catch(function (error) {
                     console.log(error);

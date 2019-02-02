@@ -1,7 +1,7 @@
 <template>
     <header id="header" class="alt">
         <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" v-for="(brand,index) in brands" :key="index" :href="brand.link"> {{ brand.title }} </a>
+            <a class="navbar-brand" v-for="(brand,index) in brands" :key="index" :href="brand.link_url"> {{ brand.title }} </a>
 
             <button class="navbar-toggler" 
                 type="button" 
@@ -19,14 +19,14 @@
                         <a v-if="!item.isDropdown" 
                             class="nav-link" 
                             :class="{disabled:item.isDisabled}" 
-                            :href="item.link">
+                            :href="item.link_url">
                             {{ item.title }} <span class="sr-only">(current)</span>
                         </a>
 
                         <a v-if="item.isDropdown" 
                             class="nav-link dropdown-toggle" 
                             :class="{disabled:item.isDisabled}" 
-                            :href="item.link" 
+                            :href="item.link_url" 
                             :id="'navbarDropdown-'+index" 
                             role="button" 
                             data-toggle="dropdown" 
@@ -37,7 +37,7 @@
 
                         <div v-if="item.isDropdown" class="dropdown-menu" :aria-labelledby="'navbarDropdown-'+index">
                             <div v-for="(subItem,index) in item.dropdownItems" :key="index">
-                                <a class="dropdown-item" :href="subItem.link"> {{ subItem.title }} </a>
+                                <a class="dropdown-item" :href="subItem.link_url"> {{ subItem.title }} </a>
                                 
                                 <div v-if="typeof(item.dropdownItems[index+1])!='undefined' && item.dropdownItems[index+1].divider-subItem.divider!=0" 
                                     class="dropdown-divider">
@@ -83,6 +83,12 @@
             }
             axios.all([getBrandData(), getMenuItem(), getSearchItems()])
                 .then(axios.spread((resBrand, resMenu, resSeach)=>{
+                    resMenu.data.forEach((element,index) => {
+                        element.isDropdown = element.isDropdown==='1' ? true : false;
+                        element.isDisabled = element.isDisabled==='1' ? true : false;
+                        element.isActive = element.isActive==='1' ? true : false;
+                    });
+                    
                     this.brands = resBrand.data;
                     this.menuItems = resMenu.data;
                     this.searchItems = resSeach.data;
