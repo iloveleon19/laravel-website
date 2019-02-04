@@ -1,3 +1,6 @@
 {
-    "/js/back/app.js": "/js/back/app.js?id=d0a0ca46bcaa888f7874"
+    "/js/front/app.js": "/js/front/app.js?id=6e356617309e6671eda2",
+    "/css/front/app.css": "/css/front/app.css?id=8d937294ce3a76bdae1d",
+    "/css/front/article.css": "/css/front/article.css?id=2f02a2c3891c9d9df3e7",
+    "/css/front/carousel.css": "/css/front/carousel.css?id=ed6418a16d088d5bddc6"
 }
