@@ -7,17 +7,29 @@
         "watch-poll": "npm run watch -- --watch-poll",
         "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
         "prod": "npm run production",
-        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+
+        "dev-backend": "npm run development-backend",
+        "development-backend": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js --env.backend",
+        "watch-backend": "npm run development-backend -- --watch",
+        "watch-poll-backend": "npm run watch-backend -- --watch-poll",
+        "hot-backend": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js --env.backend",
+        "prod-backend": "npm run production-backend",
+        "production-backend": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js --env.backend"
     },
     "devDependencies": {
+        "@babel/preset-react": "^7.0.0",
         "@fortawesome/fontawesome-free": "^5.4.1",
         "axios": "^0.18",
+        "babel-preset-react": "^6.24.1",
         "bootstrap": "^4.0.0",
         "cross-env": "^5.1",
         "jquery": "^3.2",
         "laravel-mix": "^2.0",
         "lodash": "^4.17.5",
         "popper.js": "^1.12",
+        "react": "^16.2.0",
+        "react-dom": "^16.2.0",
         "vue": "^2.5.7",
         "vue-router": "^3.0.1"
     }

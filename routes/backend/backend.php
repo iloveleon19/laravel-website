@@ -15,3 +15,7 @@ Route::get('/', function () {
     return view('backend.index');
     // return view('home');
 });
+
+Route::get('/react_sample', function () {
+    return view('backend.react_sample');
+});

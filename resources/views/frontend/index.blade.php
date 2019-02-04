@@ -6,9 +6,9 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   
-  <link rel="stylesheet" href="/css/app.css">
-  <link rel="stylesheet" href="/css/article.css">
-  <link rel="stylesheet" href="/css/carousel.css">
+  <link rel="stylesheet" href="{{ mix('/css/front/app.css') }}">
+  <link rel="stylesheet" href="{{ mix('/css/front/article.css') }}">
+  <link rel="stylesheet" href="{{ mix('/css/front/carousel.css') }}">
 
   <title>My Web Site</title>
 </head>
@@ -25,6 +25,6 @@
   </div>
 
   <!--Javascript-->
-  <script src="/js/app.js"></script>
+  <script src="{{ mix('/js/front/app.js') }}"></script>
 </body>
 </html>
