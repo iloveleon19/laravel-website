@@ -14,3 +14,4 @@ require('../bootstrap');
  */
 
 require('./components/Example.jsx');
+require('./components/Login.jsx');

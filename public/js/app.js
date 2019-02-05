@@ -37289,7 +37289,7 @@ var render = function() {
             _vm._v(
               "\n            " +
                 _vm._s(footer.title) +
-                "©" +
+                "© " +
                 _vm._s(footer.content) +
                 "\n        "
             )

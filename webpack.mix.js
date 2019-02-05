@@ -25,14 +25,14 @@ if (env && env.backend) {
  
 //  mix.webpackConfig({
 //    output: {
-//      publicPath: '/frontend/', // 设置默认打包目录
+//      publicPath: 'public/front', // 设置默认打包目录
 //      chunkFilename: `js/[name].${mix.inProduction() ? '[chunkhash].' : ''}js` // 路由懒加载的时候打包出来的js文件
 //    }
 //  });
 
-mix.js('resources/js/frontend/app.js', 'public/js/front')
-   .sass('resources/sass/app.scss', 'public/css/front')
-   .sass('resources/sass/frontend/article.scss', 'public/css/front')
-   .sass('resources/sass/frontend/carousel.scss', 'public/css/front');
+mix.js('resources/js/frontend/app.js', 'js')
+   .sass('resources/sass/app.scss', 'css')
+   .sass('resources/sass/frontend/article.scss', 'css')
+   .sass('resources/sass/frontend/carousel.scss', 'css')
 
 mix.version();

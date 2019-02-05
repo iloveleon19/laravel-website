@@ -17,12 +17,15 @@ const mix = require('laravel-mix');
 
 // mix.webpackConfig({
 //     output: {
-//       publicPath: '/js/back/', // 设置默认打包目录
+//       publicPath: 'public/back', // 设置默认打包目录
 //     //   chunkFilename: `js/[name].${mix.inProduction() ? '[chunkhash].' : ''}js` // 路由在加载的时候打包出来的js文件
 //       chunkFilename: `js/[name].${'[chunkhash].'}js` // 路由在加载的时候打包出来的js文件
 //     }
 // });
 
-mix.react('resources/js/backend/app.js', 'public/js/back');
+mix.react('resources/js/backend/app.js', 'js')
+   .sass('resources/sass/app.scss', 'css')
+   .sass('resources/sass/backend/signin.scss', 'css')
+   .setPublicPath('public/back');
 
 mix.version();

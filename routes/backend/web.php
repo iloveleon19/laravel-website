@@ -11,11 +11,12 @@
 |
 */
 
+Auth::routes();
+
 Route::get('/', function () {
     return view('backend.index');
-    // return view('home');
-});
+})->middleware('auth');
 
-Route::get('/react_sample', function () {
-    return view('backend.react_sample');
-});
+Route::get('/login', function () {
+    return view('backend.login');
+})->name('login');;

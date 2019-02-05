@@ -2,7 +2,7 @@
     <footer id="footer" class="mt-5">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-end">
             <a class="navbar-brand" v-for="(footer,idx) in footers" :key="idx" :href="footer.link_url">
-                {{ footer.title }}&copy;{{ footer.content }}
+                {{ footer.title }}© {{ footer.content }}
             </a>
         </nav>
     </footer>
