@@ -6,9 +6,9 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   
-  <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
-  <link rel="stylesheet" href="{{ mix('/css/article.css') }}">
-  <link rel="stylesheet" href="{{ mix('/css/carousel.css') }}">
+  <link rel="stylesheet" href="{{ mix('/css/app.css') }}" type="text/css">
+  <link rel="stylesheet" href="{{ mix('/css/article.css') }}" type="text/css">
+  <link rel="stylesheet" href="{{ mix('/css/carousel.css') }}" type="text/css">
 
   <title>My Web Site</title>
 </head>
@@ -16,11 +16,13 @@
 
   <div id="app">
     <header-component></header-component>
-    <carousel-component></carousel-component>
-    <card-component></card-component>
-    <jumbotron-component></jumbotron-component>
-    <container-component></container-component>
-    <social-component></social-component>
+
+    <router-view class="main" name="carousel"></router-view>
+    <router-view class="main" name="card"></router-view>
+    <router-view class="main" name="jumbotron"></router-view>
+    <router-view class="main" name="container"></router-view>
+    <router-view class="main" name="social"></router-view>
+
     <footer-component></footer-component>
   </div>
 

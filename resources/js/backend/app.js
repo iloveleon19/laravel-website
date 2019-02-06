@@ -13,5 +13,4 @@ require('../bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-require('./components/Example.jsx');
-require('./components/Login.jsx');
+require('./components/Index.jsx');

@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 
 export default class Login extends Component {
+    componentDidMount() {
+        document.title = "login"
+      }
     render() {
         return (
             <div className="container">
@@ -28,13 +32,9 @@ export default class Login extends Component {
 
                     <button className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 
-                    <p className="mt-5 mb-3 text-muted text-center">iloveleon© 2017-2018</p>
+                    <p className="mt-5 mb-3 text-muted text-center">iloveleon© 2018-2019</p>
                 </form>
             </div>
         );
     }
-}
-
-if (document.getElementById('login')) {
-    ReactDOM.render(<Login />, document.getElementById('login'));
 }

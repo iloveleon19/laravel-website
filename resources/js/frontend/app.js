@@ -7,11 +7,11 @@
 
 require('../bootstrap');
 
-// import VueRouter from 'vue-router'; //ES6 Module引入
-// import router from './routes'
+import VueRouter from 'vue-router'; //ES6 Module引入
+import router from './routes';
 
 window.Vue = require('vue');
-// Vue.use(VueRouter);
+Vue.use(VueRouter);
 
 /**
  * The following block of code may be used to automatically register your
@@ -24,13 +24,8 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('card-component', require('./components/CardComponent.vue').default);
-Vue.component('carousel-component', require('./components/CarouselComponent.vue').default);
-Vue.component('container-component', require('./components/ContainerComponent.vue').default);
 Vue.component('footer-component', require('./components/FooterComponent.vue').default);
 Vue.component('header-component', require('./components/HeaderComponent.vue').default);
-Vue.component('jumbotron-component', require('./components/JumbotronComponent.vue').default);
-Vue.component('social-component', require('./components/SocialComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -40,5 +35,5 @@ Vue.component('social-component', require('./components/SocialComponent.vue').de
 
 const app = new Vue({
     el: '#app',
-    // router: router
+    router: router
 });

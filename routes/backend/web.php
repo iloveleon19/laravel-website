@@ -18,5 +18,5 @@ Route::get('/', function () {
 })->middleware('auth');
 
 Route::get('/login', function () {
-    return view('backend.login');
-})->name('login');;
+    return view('backend.index');
+})->name('login');
