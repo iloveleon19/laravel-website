@@ -1,7 +1,7 @@
 const mix = require('laravel-mix');
 const { env } = require('minimist')(process.argv.slice(2));
 
-// 判断如果是admin那就执行 webpack.admin.js 构建后台项目，构建之后return就不会往下执行了
+// 判斷如果是 backend 那就執行 webpack.backend.js 構建後台項目，構建之後 return 就不會往下執行了
 if (env && env.backend) {
    require(`${__dirname}/webpack.backend.js`);
    return;
@@ -18,15 +18,15 @@ if (env && env.backend) {
  |
  */
 
- //  // 前台项目的构建规则
+ //  // 前台項目的構建規則
 // if (mix.inProduction()) {
 //    mix.version();
 //  }
  
 //  mix.webpackConfig({
 //    output: {
-//      publicPath: 'public/front', // 设置默认打包目录
-//      chunkFilename: `js/[name].${mix.inProduction() ? '[chunkhash].' : ''}js` // 路由懒加载的时候打包出来的js文件
+//      publicPath: 'public/front', // 設置默認打包目錄
+//      chunkFilename: `js/[name].${mix.inProduction() ? '[chunkhash].' : ''}js` // 路由在加載的時候打包出來的js文件
 //    }
 //  });
 

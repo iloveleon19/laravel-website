@@ -33,7 +33,7 @@
                 .then(axios.spread((res)=>{
                     this.jumbotrons = res.data;
                 }))
-                .catch(function (error) {
+                .catch(error => {
                     console.log(error);
                 });
             console.log('JumbotronComponent Component mounted.');

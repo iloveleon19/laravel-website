@@ -2,6 +2,7 @@
 ===
 - [目錄](#%E7%9B%AE%E9%8C%84)
 - [日期](#%E6%97%A5%E6%9C%9F)
+  - [2019-02-07](#2019-02-07)
   - [2019-02-06](#2019-02-06)
   - [2019-02-05](#2019-02-05)
   - [2019-02-02](#2019-02-02)
@@ -16,6 +17,10 @@
 
 日期
 ===
+2019-02-07
+---
+1. 後台登入功能完成
+
 2019-02-06
 ---
 1. 加入 vue-router 及 react-router-dom，可以開始實作後台登入
@@ -25,6 +30,16 @@
 2019-02-05
 ---
 1. React 設定完成，加入登入頁面，之後找 React 的路由使用
+2. webpack.mix.js 需要做設定去分前後台
+    ```javascript
+    const { env } = require('minimist')(process.argv.slice(2));
+
+    // 判断如果是admin那就执行 webpack.admin.js 构建后台项目，构建之后return就不会往下执行了
+    if (env && env.backend) {
+    require(`${__dirname}/webpack.backend.js`);
+    return;
+    }
+    ```
 
 2019-02-02
 ---

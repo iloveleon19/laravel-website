@@ -25,7 +25,7 @@
                 .then(axios.spread((res)=>{
                     this.footers = res.data;
                 }))
-                .catch(function (error) {
+                .catch(error => {
                     console.log(error);
                 });
             console.log('FooterComponent Component mounted.');

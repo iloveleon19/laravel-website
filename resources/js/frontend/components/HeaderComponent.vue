@@ -93,7 +93,7 @@
                     this.menuItems = resMenu.data;
                     this.searchItems = resSeach.data;
                 }))
-                .catch(function (error) {
+                .catch(error => {
                     console.log(error);
                 });
 

@@ -41,7 +41,7 @@
                 .then(axios.spread((resCarousel)=>{
                     this.banners = resCarousel.data;
                 }))
-                .catch(function (error) {
+                .catch(error => {
                     console.log(error);
                 });
 

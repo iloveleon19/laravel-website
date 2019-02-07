@@ -37,7 +37,7 @@
                 .then(axios.spread((resCard)=>{
                     this.cards = resCard.data;
                 }))
-                .catch(function (error) {
+                .catch(error => {
                     console.log(error);
                 });
             console.log('CardComponent Component mounted.');

@@ -23,7 +23,7 @@
                 .then(axios.spread((res)=>{
                     this.socialInfo = res.data;
                 }))
-                .catch(function (error) {
+                .catch(error => {
                     console.log(error);
                 });
             console.log('SocialComponent Component mounted.');

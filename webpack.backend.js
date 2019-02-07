@@ -17,9 +17,8 @@ const mix = require('laravel-mix');
 
 // mix.webpackConfig({
 //     output: {
-//       publicPath: 'public/back', // 设置默认打包目录
-//     //   chunkFilename: `js/[name].${mix.inProduction() ? '[chunkhash].' : ''}js` // 路由在加载的时候打包出来的js文件
-//       chunkFilename: `js/[name].${'[chunkhash].'}js` // 路由在加载的时候打包出来的js文件
+//       publicPath: 'public/back', // 設置默認打包目錄
+//     //   chunkFilename: `js/[name].${mix.inProduction() ? '[chunkhash].' : ''}js` // 路由在加載的時候打包出來的js文件
 //     }
 // });
 
