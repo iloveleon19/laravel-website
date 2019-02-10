@@ -25,6 +25,8 @@ const mix = require('laravel-mix');
 mix.react('resources/js/backend/app.js', 'js')
    .sass('resources/sass/app.scss', 'css')
    .sass('resources/sass/backend/signin.scss', 'css')
+   .sass('resources/sass/backend/dashboard.scss', 'css')
+
    .setPublicPath('public/back');
 
 mix.version();

@@ -11,8 +11,8 @@ export default class Index extends Component {
             <div className="container">
                 <Router>
                     <Switch>
-                        <Route exact path="/backend" component={Home} />
-                        <Route path="/backend/login" component={Login} onEnter={()=>{document.title = "Login"}} />
+                        <Route exact path="/backend/login" component={Login}/>
+                        <Route path="/backend" component={Home}/>
                     </Switch>
                 </Router>
             </div>

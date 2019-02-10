@@ -2,6 +2,9 @@
 ===
 - [目錄](#%E7%9B%AE%E9%8C%84)
 - [日期](#%E6%97%A5%E6%9C%9F)
+  - [2019-02-10](#2019-02-10)
+  - [2019-02-09](#2019-02-09)
+  - [2019-02-08](#2019-02-08)
   - [2019-02-07](#2019-02-07)
   - [2019-02-06](#2019-02-06)
   - [2019-02-05](#2019-02-05)
@@ -17,6 +20,32 @@
 
 日期
 ===
+2019-02-10
+---
+1. 管理文章沒有做出編輯以及分頁功能
+
+2019-02-09
+---
+1. 上傳圖片相關 Install image/intervention package.
+   1. `composer require intervention/image`
+   2. 
+        ```php
+         // app.php
+
+        'providers' => [
+        Intervention\Image\ImageServiceProvider::class,
+        ];
+
+        'aliases' => [
+        'Image' => Intervention\Image\Facades\Image::class,
+        ]
+        ```
+    3. `php artisan vendor:publish --provider="Intervention\Image\ImageServiceProviderLaravel5"`
+
+2019-02-08
+---
+1. 後台登入的時候 React 還沒有認證機制
+   
 2019-02-07
 ---
 1. 後台登入功能完成

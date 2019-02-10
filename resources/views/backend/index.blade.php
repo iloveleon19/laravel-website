@@ -8,6 +8,7 @@
 
   <link rel="stylesheet" href="{{ mix('/css/app.css', 'back') }}" type="text/css">
   <link rel="stylesheet" href="{{ mix('/css/signin.css', 'back') }}" type="text/css">
+  <link rel="stylesheet" href="{{ mix('/css/dashboard.css', 'back') }}" type="text/css">
 
   <style>
       .bd-placeholder-img {

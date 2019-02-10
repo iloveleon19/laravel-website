@@ -4,78 +4,88 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 
 export default class Login extends Component {
     componentDidMount() {
-        document.title = "login"
+        document.title = "login";
     }
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            remember: ''
         }
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
 
-    handleEmailChange(e) {
+    handleInputChange(event) {
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+    
         this.setState({
-            email: e.target.value
-        })
+            [name]: value
+        });
     }
 
-    handlePasswordChange(e) {
-        this.setState({
-            password: e.target.value
-        })
-    }
-
-    handleSubmit(e) {
-        e.preventDefault();
+    handleSubmit(event) {
+        event.preventDefault();
         axios.post('/backend/login', this.state).then(response => {
             if (response.status===200) {
                 this.props.history.push('/backend');
+            } else {
+                alert('login failed');
             }
         }).catch(error => {
                 console.log(error);
-        })
+        });
     }
 
     render() {
         return (
             <div className="container">
-                <form className="form-signin" onSubmit={this.handleSubmit} onSubmit={this.handleSubmit.bind(this)}>
+                <form className="form-signin" onSubmit={this.handleSubmit}>
                     <div className="text-center mb-4">
                         <img className="mb-4" src="../back/svg/bootstrap-solid.svg" alt="" width="72" height="72" />
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="inputEmail" className="sr-only">Email address</label>
+                        <label htmlFor="email" className="sr-only">Email address</label>
                         <input 
                             type="email"
                             className="form-control"
+                            id="email"
                             name="email"
                             placeholder="Email address"
-                            onChange={this.handleEmailChange.bind(this)}
+                            onChange={this.handleInputChange}
                             value={this.state.email}
                             autoFocus
-                            required=""
+                            required={true}
                         />
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="inputPassword" className="sr-only">Password</label>
+                        <label htmlFor="password" className="sr-only">Password</label>
                         <input 
                             type="password"
                             className="form-control"
+                            id="password"
                             name="password"
                             placeholder="Password"
-                            onChange={this.handlePasswordChange.bind(this)}
+                            onChange={this.handleInputChange}
                             value={this.state.password}
-                            required=""
+                            required={true}
                         />
                     </div>
 
                     <div className="checkbox mb-3">
                         <label htmlFor="remember">
-                            <input type="checkbox" name="remember" value="remember-me" /> Remember me
+                            <input
+                                type="checkbox"
+                                id="remember"
+                                name="remember"
+                                onChange={this.handleInputChange}
+                                value={this.state.remember} /> Remember me
                         </label>
                     </div>
 
