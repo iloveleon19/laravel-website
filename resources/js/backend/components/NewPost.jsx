@@ -15,6 +15,7 @@ export default class NewPost extends Component {
             cardTitle: '',
             cardText: '',
             imageFile: '',
+            imageName: '',
             activeSelect: '1'
         }
 
@@ -34,6 +35,9 @@ export default class NewPost extends Component {
     }
 
     handleFileChange(e) {
+        this.setState({
+            imageName: e.target.value
+        });
         let files = e.target.files || e.dataTransfer.files;
         if (!files.length) {
             return;
@@ -46,7 +50,14 @@ export default class NewPost extends Component {
         axios.post('/backend/posts', this.state).then(response => {
             if (response.status===200) {
                 alert('sucessed !!');
-                window.location.reload();
+                this.setState({
+                    cardHeader: '',
+                    cardTitle: '',
+                    cardText: '',
+                    imageFile: '',
+                    imageName: '',
+                    activeSelect: '1'
+                });
             }
         }).catch(error => {
             console.log(error);
@@ -106,9 +117,10 @@ export default class NewPost extends Component {
                             <input
                                 type="file"
                                 className="form-control-file"
-                                id="imageFile"
-                                name="imageFile"
+                                id="imageName"
+                                name="imageName"
                                 accept="image/x-png,image/gif,image/jpeg" 
+                                value={this.state.imageName}
                                 onChange={this.handleFileChange}
                                 required={true}
                             />

@@ -64766,6 +64766,7 @@ function (_Component) {
       cardTitle: '',
       cardText: '',
       imageFile: '',
+      imageName: '',
       activeSelect: '1'
     };
     _this.handleInputChange = _this.handleInputChange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
@@ -64785,6 +64786,9 @@ function (_Component) {
   }, {
     key: "handleFileChange",
     value: function handleFileChange(e) {
+      this.setState({
+        imageName: e.target.value
+      });
       var files = e.target.files || e.dataTransfer.files;
 
       if (!files.length) {
@@ -64796,11 +64800,21 @@ function (_Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
+      var _this2 = this;
+
       e.preventDefault();
       axios.post('/backend/posts', this.state).then(function (response) {
         if (response.status === 200) {
           alert('sucessed !!');
-          window.location.reload();
+
+          _this2.setState({
+            cardHeader: '',
+            cardTitle: '',
+            cardText: '',
+            imageFile: '',
+            imageName: '',
+            activeSelect: '1'
+          });
         }
       }).catch(function (error) {
         console.log(error);
@@ -64809,12 +64823,12 @@ function (_Component) {
   }, {
     key: "createImage",
     value: function createImage(file) {
-      var _this2 = this;
+      var _this3 = this;
 
       var reader = new FileReader();
 
       reader.onload = function (e) {
-        _this2.setState({
+        _this3.setState({
           imageFile: e.target.result
         });
       };
@@ -64877,9 +64891,10 @@ function (_Component) {
       }, "image input"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "file",
         className: "form-control-file",
-        id: "imageFile",
-        name: "imageFile",
+        id: "imageName",
+        name: "imageName",
         accept: "image/x-png,image/gif,image/jpeg",
+        value: this.state.imageName,
         onChange: this.handleFileChange,
         required: true
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
